@@ -1,0 +1,4 @@
+.DS_Store
+buildd/
+Makefile*
+*.pro.user
