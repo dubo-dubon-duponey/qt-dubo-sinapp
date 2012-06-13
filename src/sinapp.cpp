@@ -21,11 +21,14 @@
 
 #include "qtsingleapplication.h"
 
+#include <qDebug>
+
 namespace RoxeeSinApp{
 
 SinApp::SinApp(const QString &id, int &argc, char **argv)
     : QObject()
 {
+    qDebug() << "     +++ [Lib] {SinApp}: constructor";
     innerapp  = new QtSingleApplication( id, argc, argv );
 }
 

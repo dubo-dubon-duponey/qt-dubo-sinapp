@@ -40,9 +40,9 @@
 #ifndef QTLOCKEDFILE_H
 #define QTLOCKEDFILE_H
 
-#include <QtCore/QFile>
+#include <QtCore/qfile.h>
 #ifdef Q_OS_WIN
-#include <QtCore/QVector>
+#include <QtCore/qvector.h>
 #endif
 
 //#if defined(Q_WS_WIN)
