@@ -58,6 +58,8 @@ namespace RoxeeSinApp
 
         /*! \brief The name of the library.*/
         Q_PROPERTY(const QString ROXEE_NAME READ getName)
+        /*! \brief The name of the vendor.*/
+        Q_PROPERTY(const QString ROXEE_VENDOR READ getVendor)
         /*! \brief The version of the library.*/
         Q_PROPERTY(const QString ROXEE_VERSION READ getVersion)
         /*! \brief The (git) revision of the library.*/
@@ -73,6 +75,7 @@ namespace RoxeeSinApp
 
         /*! \cond */
         const QString getName();
+        const QString getVendor();
         const QString getVersion();
         const QString getRevision();
         const QString getChangeset();
