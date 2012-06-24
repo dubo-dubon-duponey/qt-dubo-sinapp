@@ -21,7 +21,7 @@
 
 #include "qtsingleapplication.h"
 
-#include <qDebug>
+#include <QtCore/qdebug.h>
 
 namespace RoxeeSinApp{
 
