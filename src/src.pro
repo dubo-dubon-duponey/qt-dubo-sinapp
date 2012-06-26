@@ -1,23 +1,17 @@
 # Basic consumer variables
 include(../vars.pri)
 
-# This is a library (to be ovveridden by eg MSVC specific config)
-TEMPLATE = lib
-
-# Requires only core
 QT = core network gui
 
-# And be boring
-CONFIG +=   QT_NO_CAST_FROM_ASCII \
-            QT_NO_CAST_TO_ASCII \
-            QT_STRICT_ITERATORS \
-            QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
-
-# Yes, this will build a lib
+# Build a lib
+TEMPLATE = lib
 DEFINES += LIBROXEESINAPP_LIBRARY
 
 # Basic stuff (version and build/path magic)
 include(../conf/confbase.pri)
+
+# Third-party stuff
+include(../third-party/bootstrap.pri)
 
 # Windows specific configuration
 win32{
@@ -33,33 +27,25 @@ mac{
 
 # Unix specific configuration
 unix:!mac {
-    message( -> Targetting linux)
+    message( -> Targetting *nux)
     include(../conf/confunix.pri)
 }
 
 INCLUDEPATH += $$PWD
+INCLUDEPATH += $$PWD/include/libroxeesinapp
 target.path = $$DESTDIR
 INSTALLS += target
 
-CONFIG += absolute_library_soname
-
-#LIBROXEESINAPPSHARED_EXPORT
 SOURCES += \
     qtlocalpeer.cpp \
     qtsingleapplication.cpp \
     sinapp.cpp \
     root.cpp
 
-#    qtlockedfile.cpp \
-#    qtlockedfile_win.cpp \
-#    qtlockedfile_unix.cpp \
-#    qtsinglecoreapplication.h \
-#    qtsinglecoreapplication.h \
-
 HEADERS += \
     qtlockedfile.h \
     qtlocalpeer.h \
     qtsingleapplication.h \
-    libroxeesinapp_global.h \
-    sinapp.h \
-    root.h
+    include/libroxeesinapp/libroxeesinapp_global.h \
+    include/libroxeesinapp/sinapp.h \
+    include/libroxeesinapp/root.h

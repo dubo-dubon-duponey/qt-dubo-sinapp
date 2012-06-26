@@ -71,6 +71,8 @@ namespace RoxeeSinApp
         Q_PROPERTY(const QString ROXEE_BUILD READ getBuildType)
         /*! \brief The type of the library (static / dynamic).*/
         Q_PROPERTY(const QString ROXEE_LINK READ getLinkType)
+        /*! \brief QT Version used to build.*/
+        Q_PROPERTY(const QString ROXEE_QT READ getQt)
 
 
         /*! \cond */
@@ -79,6 +81,7 @@ namespace RoxeeSinApp
         const QString getVersion();
         const QString getRevision();
         const QString getChangeset();
+        const QString getQt();
 
         const QString getBuildType();
         const QString getLinkType();
