@@ -39,8 +39,8 @@
 
 
 #include "qtlocalpeer.h"
-#include <QtCore/QCoreApplication>
-#include <QtCore/QTime>
+#include <QtCore/qcoreapplication.h>
+#include <QtCore/qdatetime.h>
 
 #if defined(Q_OS_WIN)
 #include <QtCore/QLibrary>
