@@ -6,7 +6,8 @@ lessThan(QT_VERSION, 4.8) {
 # Explore subdirs in order
 TEMPLATE = subdirs
 CONFIG = ordered
-SUBDIRS = src demo
+SUBDIRS = src
+# demo
 
 OTHER_FILES += vars.pri.in \
     res/doxygen.tpl \
