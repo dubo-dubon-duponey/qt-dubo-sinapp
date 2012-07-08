@@ -5,13 +5,20 @@ QT = core network gui
 
 # Build a lib
 TEMPLATE = lib
-DEFINES += LIBROXEESINAPP_LIBRARY
 
 # Basic stuff (version and build/path magic)
 include(../conf/confbase.pri)
 
 # Third-party stuff
-include(../third-party/bootstrap.pri)
+exists(../third-party/bootstrap.pri){
+    include(../third-party/bootstrap.pri)
+}
+
+DEFINES += LIBROXEESINAPP_LIBRARY
+
+#contains(CONFIG, static){
+#    DEFINES += LIBROXEESINAPP_STATIC
+#}
 
 # Windows specific configuration
 win32{
