@@ -1,58 +1,47 @@
-# Basic consumer variables
-include(../vars.pri)
-
+TEMPLATE = lib
 QT = core network gui
 
-# Build a lib
-TEMPLATE = lib
-
-# Basic stuff (version and build/path magic)
-include(../conf/confbase.pri)
-
-# Third-party stuff
-exists(../third-party/bootstrap.pri){
-    include(../third-party/bootstrap.pri)
-}
-
-DEFINES += LIBROXEESINAPP_LIBRARY
-
-#contains(CONFIG, static){
-#    DEFINES += LIBROXEESINAPP_STATIC
-#}
+include($$PWD/../vars.pri)
+include($$PWD/../conf/confbase.pri)
 
 # Windows specific configuration
 win32{
     message( -> Targetting windows)
-    include(../conf/confwin.pri)
+    include($$PWD/../conf/confwin.pri)
 }
 
 # Mac specific configuration
 mac{
     message( -> Targetting osx)
-    include(../conf/confmacx.pri)
+    include($$PWD/../conf/confmacx.pri)
 }
 
 # Unix specific configuration
 unix:!mac {
     message( -> Targetting *nux)
-    include(../conf/confunix.pri)
+    include($$PWD/../conf/confunix.pri)
+}
+
+DEFINES += LIBROXEESINAPP_LIBRARY
+
+contains(ROXEE_LINK_TYPE, static){
+    DEFINES += LIBROXEESINAPP_USE_STATIC
 }
 
 INCLUDEPATH += $$PWD
-INCLUDEPATH += $$PWD/include/libroxeesinapp
+INCLUDEPATH += $$PWD/include
 target.path = $$DESTDIR
 INSTALLS += target
 
-SOURCES += \
-    qtlocalpeer.cpp \
-    qtsingleapplication.cpp \
-    sinapp.cpp \
-    root.cpp
 
-HEADERS += \
-    qtlockedfile.h \
-    qtlocalpeer.h \
-    qtsingleapplication.h \
-    include/libroxeesinapp/libroxeesinapp_global.h \
-    include/libroxeesinapp/sinapp.h \
-    include/libroxeesinapp/root.h
+SOURCES +=  $$PWD/qtlocalpeer.cpp \
+            $$PWD/qtsingleapplication.cpp \
+            $$PWD/sinapp.cpp \
+            $$PWD/root.cpp
+
+HEADERS +=  $$PWD/qtlockedfile.h \
+            $$PWD/qtlocalpeer.h \
+            $$PWD/qtsingleapplication.h \
+            $$PWD/include/libroxeesinapp/libroxeesinapp_global.h \
+            $$PWD/include/libroxeesinapp/sinapp.h \
+            $$PWD/include/libroxeesinapp/root.h

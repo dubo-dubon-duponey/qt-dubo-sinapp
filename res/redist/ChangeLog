@@ -1,3 +1,7 @@
+RoxeeSinApp-0.6.0:
+    Fix building on Debian testing with newer gcc.
+    Build cleanup.
+
 RoxeeSinApp-0.5.0:
     Clean-up build system
     Linux building

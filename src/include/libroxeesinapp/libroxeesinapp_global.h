@@ -16,7 +16,9 @@
 
 // This is largely crap - consumer will get Q_DECL_IMPORT no matter what (lib being static or not won't change shit)
 
-#ifdef LIBROXEESINAPP_LIBRARY
+#ifdef LIBROXEESINAPP_USE_STATIC
+#  define LIBROXEESINAPPSHARED_EXPORT
+#elif defined(LIBROXEESINAPP_LIBRARY)
 #  define LIBROXEESINAPPSHARED_EXPORT Q_DECL_EXPORT
 #else
 #  define LIBROXEESINAPPSHARED_EXPORT Q_DECL_IMPORT

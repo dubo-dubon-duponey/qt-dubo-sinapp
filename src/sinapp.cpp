@@ -17,7 +17,7 @@
  * Boston, MA  02110-1301  USA
  */
 
-#include "sinapp.h"
+#include "libroxeesinapp/sinapp.h"
 
 #include "qtsingleapplication.h"
 
