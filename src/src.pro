@@ -1,26 +1,7 @@
 TEMPLATE = lib
-QT = core network gui
+QT = core network widgets
 
-include($$PWD/../vars.pri)
-include($$PWD/../conf/confbase.pri)
-
-# Windows specific configuration
-win32{
-    message( -> Targetting windows)
-    include($$PWD/../conf/confwin.pri)
-}
-
-# Mac specific configuration
-mac{
-    message( -> Targetting osx)
-    include($$PWD/../conf/confmacx.pri)
-}
-
-# Unix specific configuration
-unix:!mac {
-    message( -> Targetting *nux)
-    include($$PWD/../conf/confunix.pri)
-}
+include($$PWD/../conf/conf.pri)
 
 DEFINES += LIBROXEESINAPP_LIBRARY
 
@@ -33,6 +14,13 @@ INCLUDEPATH += $$PWD/include
 target.path = $$DESTDIR
 INSTALLS += target
 
+# Copy headers to destination
+system(rm -Rf "$$DESTDIR/../include")
+system(mkdir -p "$$DESTDIR/../")
+system(cp -R "$$PWD/include" "$$DESTDIR/../")
+system(rm -Rf "$$DESTDIR/../share")
+system(mkdir -p "$$DESTDIR/../share/libroxeesinapp")
+system(cp "$$PWD/../res/redist/*" "$$DESTDIR/../share/libroxeesinapp")
 
 SOURCES +=  $$PWD/qtlocalpeer.cpp \
             $$PWD/qtsingleapplication.cpp \

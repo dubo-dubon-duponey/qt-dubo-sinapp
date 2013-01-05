@@ -22,7 +22,7 @@
 
 #include "libroxeesinapp_global.h"
 
-#include <QtGui/qapplication.h>
+#include <QApplication>
 
 namespace RoxeeSinApp{
 
