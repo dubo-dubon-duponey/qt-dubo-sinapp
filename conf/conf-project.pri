@@ -1,3 +1,9 @@
+contains(TEMPLATE, app){
+    INCLUDEPATH +=  $$DESTDIR/../include
+    LIBS += -L$$DESTDIR/../lib
+    LIBS += -l$${TARGET}
+}
+
 #contains(TEMPLATE, lib){
 #    win32{
 #        #CONFIG += staticlib
@@ -23,6 +29,3 @@
 #    }
 #}
 
-contains(TEMPLATE, app){
-    INCLUDEPATH +=  $$DESTDIR/../include
-}
