@@ -22,7 +22,10 @@ system(rm -Rf "$$DESTDIR/../share")
 system(mkdir -p "$$DESTDIR/../share/libroxeesinapp")
 system(cp "$$PWD/../res/redist/*" "$$DESTDIR/../share/libroxeesinapp")
 
-SOURCES +=  $$PWD/qtlocalpeer.cpp \
+SOURCES +=  $$PWD/qtlockedfile.cpp \
+            $$PWD/qtlockedfile_win.cpp \
+            $$PWD/qtlockedfile_unix.cpp \
+            $$PWD/qtlocalpeer.cpp \
             $$PWD/qtsingleapplication.cpp \
             $$PWD/sinapp.cpp \
             $$PWD/root.cpp
