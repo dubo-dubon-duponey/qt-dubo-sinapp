@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
     RoxeeSinApp::Root * root = new RoxeeSinApp::Root();
     RoxeeSinApp::SinApp app(QString::fromLatin1("RXWR"), argc, argv);
 
+    qDebug() << root->getName();
+
     int a;
 
     if(app.isRunning()){

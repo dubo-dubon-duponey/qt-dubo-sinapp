@@ -1,7 +1,9 @@
-RoxeeSinApp-0.7.0-dev:
+RoxeeSinApp-0.7.0:
     Build system cleanup
     Demo.
     QT5 support.
+    Warning removals.
+    Upgrade to latest upstream.
 
 RoxeeSinApp-0.6.0:
     Fix building on Debian testing with newer gcc.

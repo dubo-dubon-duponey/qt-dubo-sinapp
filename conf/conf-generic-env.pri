@@ -43,9 +43,10 @@ mac{
         ROXEE_EXTERNAL= $$PWD/../third-party/$$ROXEE_INTERNAL_PATH
     }
 
-    isEmpty(ROXEE_EXTERNAL){
-        error(You have to specify either a ROXEE_INTERNAL_VERSION or ROXEE_EXTERNAL where to find dependencies)
-    }
+# XXX TO BE FIXED GLOBALLY
+#    isEmpty(ROXEE_EXTERNAL){
+#        error(You have to specify either a ROXEE_INTERNAL_VERSION or ROXEE_EXTERNAL where to find dependencies)
+#    }
 }
 
 # Build type
