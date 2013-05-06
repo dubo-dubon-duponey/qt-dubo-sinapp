@@ -1,7 +1,15 @@
 contains(TEMPLATE, app){
     INCLUDEPATH +=  $$DESTDIR/../include
     LIBS += -L$$DESTDIR/../lib
-    LIBS += -l$${TARGET}
+    win32{
+        contains(ROXEE_LINK_TYPE, static){
+            LIBS += -l$${TARGET}
+        }else{
+            LIBS += -l$${TARGET}0
+        }
+    }else{
+        LIBS += -l$${TARGET}
+    }
 }
 
 #contains(TEMPLATE, lib){

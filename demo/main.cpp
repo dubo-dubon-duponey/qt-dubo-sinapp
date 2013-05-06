@@ -10,17 +10,17 @@
  */
 
 #include <QtCore/qdebug.h>
-//#include <QApplication>
+#include <QWidget>
 #include <libroxeesinapp/sinapp.h>
 #include <libroxeesinapp/root.h>
 
 
 int main(int argc, char *argv[])
 {
-    QApplication mainApp(argc, argv);
+//    QApplication mainApp(argc, argv);
 
     RoxeeSinApp::Root * root = new RoxeeSinApp::Root();
-    RoxeeSinApp::SinApp app(QString::fromLatin1("RXWR"), argc, argv);
+    RoxeeSinApp::SinApp app(QString::fromLatin1("IDENTIFIER"), argc, argv);
 
     qDebug() << root->getName();
 
@@ -32,7 +32,9 @@ int main(int argc, char *argv[])
         a = !app.sendMessage(QString::fromLatin1("dock-channel/die"));
     }else{
         qDebug() << "[A] Starting app";
-        a = mainApp.exec();
+        QWidget * t = new QWidget();
+        t->show();
+        a = app.innerapp->exec();
     }
     return a;
 }
