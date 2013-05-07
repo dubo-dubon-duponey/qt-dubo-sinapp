@@ -1,7 +1,7 @@
 # Informations about the git version
 ROXEE_GITVERSION = NOGIT
 ROXEE_GITCHANGENUMBER = NOGIT
-exists(../.git/HEAD) {
+exists(../../.git/HEAD) {
     ROXEE_GITVERSION=$$system(git log -n1 --pretty=format:%h)
     !isEmpty(ROXEE_GITVERSION) {
         # No wc on windows
@@ -38,17 +38,17 @@ renv=$$(ROXEE_EXTERNAL)
     ROXEE_EXTERNAL = $$renv
 }
 
-mac{
-    isEmpty(ROXEE_EXTERNAL){
-        !isEmpty(ROXEE_INTERNAL_VERSION){
-            ROXEE_EXTERNAL= $$PWD/../third-party/$$ROXEE_INTERNAL_PATH
-        }
+isEmpty(ROXEE_EXTERNAL){
+    ROXEE_INTERNAL = true
+    !isEmpty(ROXEE_INTERNAL_VERSION){
+        ROXEE_EXTERNAL= $$PWD/../../third-party/$$ROXEE_INTERNAL_PATH
     }
+}
 
-# XXX TO BE FIXED GLOBALLY
-#    isEmpty(ROXEE_EXTERNAL){
-#        error(You have to specify either a ROXEE_INTERNAL_VERSION or ROXEE_EXTERNAL where to find dependencies)
-#    }
+mac|win32{
+    isEmpty(ROXEE_EXTERNAL){
+        error(You have to specify either a ROXEE_INTERNAL_VERSION or ROXEE_EXTERNAL where to find dependencies on windows and mac)
+    }
 }
 
 # Build type
@@ -70,6 +70,12 @@ win32 {
     ROXEE_PLATFORM = $$system(uname)-$$system(uname -n)-$$system(arch)
 }
 
+ROXEE_LINK_NAME = $${TARGET}
+win32{
+    contains(ROXEE_LINK_TYPE, dynamic){
+        ROXEE_LINK_NAME = $${TARGET}0
+    }
+}
 # Export these to the root object
 DEFINES += PROJECT_NAME=\\\"$${ROXEE_PROJECT_NAME}\\\"
 DEFINES += PROJECT_VENDOR=\\\"$${ROXEE_VENDOR_NAME}\\\"
