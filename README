@@ -2,6 +2,13 @@
 RoxeeSinApp
 ================
 
-QT-Solutions single-application fork (may contain traces of nuts).
+QT-Solutions single-application fork (may contain traces of nuts - http://qt.gitorious.org/qt-solutions/qt-solutions/trees/master/qtsingleapplication)
 
 Licensed under BSD2.
+
+================
+TODO
+================
+
+Do not delegate (mask behind QApplication though).
+Write better documentation.

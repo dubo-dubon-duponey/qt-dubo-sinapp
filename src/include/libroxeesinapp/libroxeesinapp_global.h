@@ -14,8 +14,6 @@
 
 #include <QtCore/qglobal.h>
 
-// This is largely crap - consumer will get Q_DECL_IMPORT no matter what (lib being static or not won't change shit)
-
 #ifdef LIBROXEESINAPP_USE_STATIC
 #  define LIBROXEESINAPPSHARED_EXPORT
 #elif defined(LIBROXEESINAPP_LIBRARY)
