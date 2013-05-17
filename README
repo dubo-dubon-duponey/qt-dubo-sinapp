@@ -10,5 +10,4 @@ Licensed under BSD2.
 TODO
 ================
 
-Do not delegate (mask behind QApplication though).
 Write better documentation.
