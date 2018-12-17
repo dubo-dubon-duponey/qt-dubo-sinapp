@@ -1,5 +1,5 @@
 TEMPLATE = app
-QT = core widgets
+QT = core widgets webengine webenginewidgets webchannel
 
 PROJECT_ROOT = $$PWD/..
 include($$PROJECT_ROOT/config/qmakeitup.pri)
@@ -12,5 +12,6 @@ contains(DUBO_LINK_TYPE, static){
     DEFINES += LIBDUBOSINAPP_USE_STATIC
 }
 
-SOURCES +=  $$PWD/main.cpp
+SOURCES += $$PWD/main.cpp
+RESOURCES += demo.qrc
 

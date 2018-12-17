@@ -25,6 +25,6 @@ SOURCES +=  $$PWD/qtlockedfile.cpp \
 HEADERS +=  $$PWD/qtlockedfile.h \
             $$PWD/qtlocalpeer.h \
             $$PWD/qtsingleapplication.h \
-            $$PWD/lib$${TARGET}/libdubosinapp_global.h \
+            $$PWD/lib$${TARGET}/global.h \
             $$PWD/lib$${TARGET}/sinapp.h \
             $$PWD/lib$${TARGET}/root.h

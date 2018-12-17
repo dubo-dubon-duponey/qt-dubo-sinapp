@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,6 +31,10 @@ const QString Root::getRevision(){
     return VERSION_GIT;
 }
 
+const QString Root::getChangeset(){
+    return VERSION_CHANGE;
+}
+
 const QString Root::getBuildType(){
     return PROJECT_BUILDTYPE;
 }
@@ -41,10 +45,6 @@ const QString Root::getLinkType(){
 
 const QString Root::getQt(){
     return QT_VERSION_STR;
-}
-
-const QString Root::getChangeset(){
-    return VERSION_CHANGE;
 }
 
 }

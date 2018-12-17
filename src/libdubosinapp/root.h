@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,8 +17,9 @@ This is just a github fork of QtSingleApplication from digia with some trivial s
 #ifndef DUBOSINAPP_ROOT_H
 #define DUBOSINAPP_ROOT_H
 
-#include "libdubosinapp_global.h"
-#include <QtCore/qobject.h>
+#include "global.h"
+
+#include <QObject>
 
 /*! \namespace DuboSinApp
 \brief The library namespace.
@@ -34,22 +35,22 @@ namespace DuboSinApp
     public:
 
         /*! \brief The name of the library.*/
-        Q_PROPERTY(const QString DUBO_NAME READ getName)
+        Q_PROPERTY(const QString NAME READ getName CONSTANT)
         /*! \brief The name of the vendor.*/
-        Q_PROPERTY(const QString DUBO_VENDOR READ getVendor)
+        Q_PROPERTY(const QString VENDOR READ getVendor CONSTANT)
         /*! \brief The version of the library.*/
-        Q_PROPERTY(const QString DUBO_VERSION READ getVersion)
+        Q_PROPERTY(const QString VERSION READ getVersion CONSTANT)
         /*! \brief The (git) revision of the library.*/
-        Q_PROPERTY(const QString DUBO_REVISION READ getRevision)
+        Q_PROPERTY(const QString REVISION READ getRevision CONSTANT)
         /*! \brief The (git) changeset of the library.*/
-        Q_PROPERTY(const QString DUBO_CHANGESET READ getChangeset)
+        Q_PROPERTY(const QString CHANGESET READ getChangeset CONSTANT)
 
         /*! \brief The build type (release / debug of the library).*/
-        Q_PROPERTY(const QString DUBO_BUILD READ getBuildType)
+        Q_PROPERTY(const QString BUILD READ getBuildType CONSTANT)
         /*! \brief The type of the library (static / dynamic).*/
-        Q_PROPERTY(const QString DUBO_LINK READ getLinkType)
+        Q_PROPERTY(const QString LINK READ getLinkType CONSTANT)
         /*! \brief QT Version used to build.*/
-        Q_PROPERTY(const QString DUBO_QT READ getQt)
+        Q_PROPERTY(const QString QT READ getQt CONSTANT)
 
 
         /*! \cond */

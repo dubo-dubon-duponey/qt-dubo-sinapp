@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -12,7 +12,7 @@
 #ifndef DUBOSINAPP_SINAPP_H
 #define DUBOSINAPP_SINAPP_H
 
-#include "libdubosinapp_global.h"
+#include "global.h"
 
 #include <QApplication>
 
@@ -33,6 +33,8 @@ public:
     bool sendMessage(const QString & message);
     /*! \brief Set the widget that will get notified.*/
     void setActivationWindow(QWidget* aw, bool activateOnMessage);
+    /*! \brief Exec the app */
+    int exec();
 
     // Allow to access the wrapped QApplication object
     QApplication * innerapp;

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,7 +33,12 @@ bool SinApp::sendMessage(const QString & message)
 
 void SinApp::setActivationWindow(QWidget* aw, bool activateOnMessage)
 {
-    static_cast<QtSingleApplication *>(innerapp)->setActivationWindow(aw, activateOnMessage);
+    return static_cast<QtSingleApplication *>(innerapp)->setActivationWindow(aw, activateOnMessage);
+}
+
+int SinApp::exec()
+{
+    return static_cast<QtSingleApplication *>(innerapp)->exec();
 }
 
 }
