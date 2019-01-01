@@ -4,3 +4,4 @@ Makefile*
 *.pro.user
 /.idea
 /.qmake.stash
+*.pro.user*

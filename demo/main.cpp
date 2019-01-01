@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2018, Dubo Dubon Duponey <dubodubonduponey@gmail.com>
+ * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,33 +14,67 @@
 #include <libdubosinapp/sinapp.h>
 #include <libdubosinapp/root.h>
 
+#include <QtWebEngine>
+#include <QWebEngineView>
+#include <QWebEnginePage>
+#include <QFileInfo>
+#include <QDir>
+#include <QWebChannel>
+
+QWebChannel * SetupWebView(DuboSinApp::SinApp * app)
+{
+    QFileInfo jsFileInfo(QDir::currentPath() + "/qwebchannel.js");
+
+    if (!jsFileInfo.exists())
+        QFile::copy(":/qtwebchannel/qwebchannel.js", jsFileInfo.absoluteFilePath());
+
+    QtWebEngine::initialize();
+    QWebEngineView * view = new QWebEngineView();
+
+    QWebChannel * channel = new QWebChannel(view->page());
+    view->page()->setWebChannel(channel);
+
+    view->load(QUrl("qrc:/demo.html"));
+    view->show();
+
+    (* app).setActivationWindow(view, true);
+
+    return channel;
+}
+
+void OutputLibraryInfo(){
+    DuboSinApp::Root * root = new DuboSinApp::Root();
+    qDebug() << root->property("NAME");
+    qDebug() << root->property("VENDOR");
+    qDebug() << root->property("VERSION");
+    qDebug() << root->property("REVISION");
+    qDebug() << root->property("CHANGESET");
+    qDebug() << root->property("BUILD");
+    qDebug() << root->property("LINK");
+    qDebug() << root->property("QT");
+    qDebug() << root->property("PLUGIN_NAME");
+    qDebug() << root->property("PLUGIN_VERSION");
+    qDebug() << root->property("PLUGIN_REVISION");
+}
+
 
 int main(int argc, char *argv[])
 {
-    DuboSinApp::Root * root = new DuboSinApp::Root();
-    DuboSinApp::SinApp app(QString::fromLatin1("IDENTIFIER"), argc, argv);
-
-    qDebug() << root->getName();
-    qDebug() << root->getVendor();
-    qDebug() << root->getVersion();
-    qDebug() << root->getRevision();
-    qDebug() << root->getChangeset();
-    qDebug() << root->getBuildType();
-    qDebug() << root->getLinkType();
-    qDebug() << root->getQt();
-
-    int a;
+    DuboSinApp::SinApp app(QString::fromLatin1("UNIQUE_IDENTIFIER"), argc, argv);
 
     if(app.isRunning()){
         qDebug() << "[A] Application already here! Refusing to start, and focus the one.";
         // Signal the other instance so that it can focus
-        a = !app.sendMessage(QString::fromLatin1("dock-channel/die"));
-    }else{
-        qDebug() << "[A] Starting app";
-        QWidget * t = new QWidget();
-        t->show();
-        app.setActivationWindow(t, true);
-        a = app.innerapp->exec();
+        return !app.sendMessage(QString::fromLatin1("dock-channel/die"));
     }
-    return a;
+
+    qDebug() << "[A] Starting app";
+
+    OutputLibraryInfo();
+
+    DuboSinApp::Root * root = new DuboSinApp::Root();
+    QWebChannel * chan = SetupWebView(&app);
+    chan->registerObject("Root", root);
+
+    return app.exec();
 }

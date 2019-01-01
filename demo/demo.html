@@ -4,18 +4,19 @@
         <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
         <script>
         new QWebChannel(qt.webChannelTransport, function(channel){
-            window.DuboSinapp = {
-                root: channel.objects.SinappRoot
-            }
-            var iNode = document.getElementById("info");
+            // Purely for debug
+            window.XXX = channel.objects;
 
-            var list = ["NAME", "VENDOR", "VERSION", "REVISION", "CHANGESET", "BUILD", "LINK", "QT"];
+            // Display library information
+            var disp = channel.objects.Root;
+            var iNode = document.getElementById("info");
+            var list = ["NAME", "VENDOR", "VERSION", "REVISION", "CHANGESET", "BUILD", "LINK", "QT", "PLUGIN_NAME", "PLUGIN_VERSION", "PLUGIN_REVISION"];
+
             list.forEach(function(i){
                 var line = document.createElement("div");
-                line.appendChild(document.createTextNode(i + ": " + channel.objects.SinappRoot[i]));
+                line.appendChild(document.createTextNode(i + ": " + disp[i]));
                 iNode.appendChild(line)
             });
-
         });
 
         </script>

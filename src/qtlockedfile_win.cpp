@@ -38,6 +38,8 @@
 **
 ****************************************************************************/
 
+#ifdef Q_OS_WIN
+
 #include "qtlockedfile.h"
 #include <qt_windows.h>
 #include <QFileInfo>
@@ -49,6 +51,8 @@
 #if QT_VERSION >= 0x050000
 #define QT_WA(unicode, ansi) unicode
 #endif
+
+namespace QtLP_Private {
 
 Qt::HANDLE QtLockedFile::getMutexHandle(int idx, bool doCreate)
 {
@@ -209,3 +213,7 @@ QtLockedFile::~QtLockedFile()
     if (wmutex)
         CloseHandle(wmutex);
 }
+
+}
+
+#endif
