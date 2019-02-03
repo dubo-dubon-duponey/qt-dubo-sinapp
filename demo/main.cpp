@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019, Dubo Dubon Duponey <dubodubonduponey+github@pm.me>
  * All rights reserved.
  *
@@ -23,10 +23,10 @@
 
 QWebChannel * SetupWebView(DuboSinApp::SinApp * app)
 {
-    QFileInfo jsFileInfo(QDir::currentPath() + "/qwebchannel.js");
+    QFileInfo jsFileInfo(QDir::currentPath() + QString::fromLatin1("/qwebchannel.js"));
 
     if (!jsFileInfo.exists())
-        QFile::copy(":/qtwebchannel/qwebchannel.js", jsFileInfo.absoluteFilePath());
+        QFile::copy(QString::fromLatin1(":/qtwebchannel/qwebchannel.js"), jsFileInfo.absoluteFilePath());
 
     QtWebEngine::initialize();
     QWebEngineView * view = new QWebEngineView();
@@ -34,7 +34,7 @@ QWebChannel * SetupWebView(DuboSinApp::SinApp * app)
     QWebChannel * channel = new QWebChannel(view->page());
     view->page()->setWebChannel(channel);
 
-    view->load(QUrl("qrc:/demo.html"));
+    view->load(QUrl(QString::fromLatin1("qrc:/demo.html")));
     view->show();
 
     (* app).setActivationWindow(view, true);
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
     DuboSinApp::Root * root = new DuboSinApp::Root();
     QWebChannel * chan = SetupWebView(&app);
-    chan->registerObject("Root", root);
+    chan->registerObject(QString::fromLatin1("Root"), root);
 
     return app.exec();
 }

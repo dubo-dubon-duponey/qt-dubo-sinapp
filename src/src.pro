@@ -6,13 +6,12 @@ include($$PROJECT_ROOT/config/qmakeitup.pri)
 
 INCLUDEPATH += $$PWD
 
-DEFINES += LIBDUBOSINAPP_LIBRARY
-contains(DUBO_LINK_TYPE, static){
-    DEFINES += LIBDUBOSINAPP_USE_STATIC
-}
-
-copyToDestdir($$PWD/lib$${TARGET}/*, $$DESTDIR/../include/lib$${TARGET})
-copyToDestdir($$PWD/../res/redist/*, $$DESTDIR/../share/lib$${TARGET})
+HEADERS +=  $$PWD/qtlockedfile.h \
+            $$PWD/qtlocalpeer.h \
+            $$PWD/qtsingleapplication.h \
+            $$PWD/lib$${TARGET}/global.h \
+            $$PWD/lib$${TARGET}/sinapp.h \
+            $$PWD/lib$${TARGET}/root.h
 
 SOURCES +=  $$PWD/qtlockedfile.cpp \
             $$PWD/qtlockedfile_win.cpp \
@@ -21,10 +20,3 @@ SOURCES +=  $$PWD/qtlockedfile.cpp \
             $$PWD/qtsingleapplication.cpp \
             $$PWD/sinapp.cpp \
             $$PWD/root.cpp
-
-HEADERS +=  $$PWD/qtlockedfile.h \
-            $$PWD/qtlocalpeer.h \
-            $$PWD/qtsingleapplication.h \
-            $$PWD/lib$${TARGET}/global.h \
-            $$PWD/lib$${TARGET}/sinapp.h \
-            $$PWD/lib$${TARGET}/root.h
