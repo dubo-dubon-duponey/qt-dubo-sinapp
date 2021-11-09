@@ -29,16 +29,15 @@ public:
 
     /*! \brief Wether the app is running already or not.*/
     bool isRunning();
-    /*! \brief Send a message to other running instances.*/
-    bool sendMessage(const QString & message);
     /*! \brief Set the widget that will get notified.*/
     void setActivationWindow(QWidget* aw, bool activateOnMessage);
+    /*! \brief Send a message to other running instances.*/
+    bool sendMessage(const QString & message);
     /*! \brief Exec the app */
     int exec();
 
     // Allow to access the wrapped QApplication object
     QApplication * innerapp;
-
 };
 
 }

@@ -142,23 +142,6 @@ void QtSingleApplication::sysInit(const QString &appId)
 
 
 /*!
-    Creates a QtSingleApplication object. The application identifier
-    will be QCoreApplication::applicationFilePath(). \a argc, \a
-    argv, and \a GUIenabled are passed on to the QAppliation constructor.
-
-    If you are creating a console application (i.e. setting \a
-    GUIenabled to false), you may consider using
-    QtSingleCoreApplication instead.
-*/
-
-QtSingleApplication::QtSingleApplication(int &argc, char **argv, bool GUIenabled)
-    : QApplication(argc, argv, GUIenabled)
-{
-    sysInit();
-}
-
-
-/*!
     Creates a QtSingleApplication object with the application
     identifier \a appId. \a argc and \a argv are passed on to the
     QAppliation constructor.
@@ -205,17 +188,6 @@ bool QtSingleApplication::sendMessage(const QString &message, int timeout)
     return peer->sendMessage(message, timeout);
 }
 
-
-/*!
-    Returns the application identifier. Two processes with the same
-    identifier will be regarded as instances of the same application.
-*/
-QString QtSingleApplication::id() const
-{
-    return peer->applicationId();
-}
-
-
 /*!
   Sets the activation window of this application to \a aw. The
   activation window is the widget that will be activated by
@@ -235,18 +207,6 @@ void QtSingleApplication::setActivationWindow(QWidget* aw, bool activateOnMessag
         connect(peer, SIGNAL(messageReceived(const QString&)), this, SLOT(activateWindow()));
     else
         disconnect(peer, SIGNAL(messageReceived(const QString&)), this, SLOT(activateWindow()));
-}
-
-
-/*!
-    Returns the applications activation window if one has been set by
-    calling setActivationWindow(), otherwise returns 0.
-
-    \sa setActivationWindow()
-*/
-QWidget* QtSingleApplication::activationWindow() const
-{
-    return actWin;
 }
 
 
@@ -281,11 +241,4 @@ void QtSingleApplication::activateWindow()
     message from another instance of this application.
 
     \sa sendMessage(), setActivationWindow(), activateWindow()
-*/
-
-
-/*!
-    \fn void QtSingleApplication::initialize(bool dummy = true)
-
-    \obsolete
 */

@@ -28,7 +28,6 @@ QWebChannel * SetupWebView(DuboSinApp::SinApp * app)
     if (!jsFileInfo.exists())
         QFile::copy(QString::fromLatin1(":/qtwebchannel/qwebchannel.js"), jsFileInfo.absoluteFilePath());
 
-    QtWebEngine::initialize();
     QWebEngineView * view = new QWebEngineView();
 
     QWebChannel * channel = new QWebChannel(view->page());
@@ -60,6 +59,8 @@ void OutputLibraryInfo(){
 
 int main(int argc, char *argv[])
 {
+    QtWebEngine::initialize();
+
     DuboSinApp::SinApp app(QString::fromLatin1("UNIQUE_IDENTIFIER"), argc, argv);
 
     if(app.isRunning()){
@@ -73,6 +74,7 @@ int main(int argc, char *argv[])
     OutputLibraryInfo();
 
     DuboSinApp::Root * root = new DuboSinApp::Root();
+
     QWebChannel * chan = SetupWebView(&app);
     chan->registerObject(QString::fromLatin1("Root"), root);
 
